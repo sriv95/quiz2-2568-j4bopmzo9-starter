@@ -59,11 +59,11 @@ export default function FoodTracker() {
 
       <Divider my="md" />
       {/* Type additional total cost here. */}
-      <Title order={4}>Total: {sumTotal} Baht</Title>
+      <Title order={4}>Total: {sumTotal.toLocaleString()} Baht</Title>
       <Stack my="sm">
-        <Text>Main Course: {sumMainCourse} Baht</Text>
-        <Text>Drinks: {sumDrink} Baht</Text>
-        <Text>Dessert: {sumDessert} Baht</Text>
+        <Text>Main Course: {sumMainCourse.toLocaleString()} Baht</Text>
+        <Text>Drinks: {sumDrink.toLocaleString()} Baht</Text>
+        <Text>Dessert: {sumDessert.toLocaleString()} Baht</Text>
       </Stack>
 
       <Divider my="md" />
