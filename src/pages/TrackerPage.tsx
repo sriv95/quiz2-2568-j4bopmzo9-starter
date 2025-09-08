@@ -26,17 +26,17 @@ export default function FoodTracker() {
     let sumDrink = 0
     let sumDessert = 0
     items.forEach(i => {
-      sumTotal+=Number(i.price)
+      sumTotal += Number(i.price)*Number(i.quantity)
       
       switch (i.category) {
         case categories[0]:
-          sumMainCourse += Number(i.price)
+          sumMainCourse += Number(i.price)*Number(i.quantity)
           break
         case categories[1]:
-          sumDrink += Number(i.price)
+          sumDrink += Number(i.price)*Number(i.quantity)
           break
         case categories[2]:
-          sumDessert += Number(i.price)
+          sumDessert += Number(i.price)*Number(i.quantity)
           break
         default:
           break;
