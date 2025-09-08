@@ -2,6 +2,8 @@ import { useState , useEffect } from "react";
 import { Button, Stack, Title, Divider, Container , Text} from "@mantine/core";
 import { v4 as uuidv4 } from "uuid";
 import ItemCard from "../components/ItemCard"
+import AddFoodModal from "../components/Modal"
+import { useDisclosure } from "@mantine/hooks";
 
 type FoodItem = {
   id: string;
@@ -12,8 +14,16 @@ type FoodItem = {
 };
 
 export default function FoodTracker() {
-  const [opened, setOpened] = useState(false);
-  const [items, setItems] = useState<FoodItem[]>([]);
+  // const [opened, {open,close}] = useDisclosure(false)
+  const [items, setItems] = useState<FoodItem[]>([
+    {
+      id: uuidv4(),
+      name: "Strawberry",
+      price: "600",
+      quantity: "2",
+      category: "Dessert"
+    },
+  ]);
   const categories = ["Main Course", "Drink", "Dessert"];
 
   const [sumTotal, setsumTotal] = useState(0)
@@ -53,11 +63,22 @@ export default function FoodTracker() {
   const deleteItem = (Id: string) =>{
     setItems((item) => item.filter((i)=>i.id !== Id))
   }
+  const addItem = (name:string,price:any,quantity:any,category:string) => {
+    const newItem:FoodItem = {
+      id: uuidv4(),
+      name: name,
+      price: price,
+      quantity: quantity,
+      category: category
+    }
+    setItems((i) => [...i,newItem])
+  }
   return (
     <Container style={{ maxWidth: 600, margin: "auto", padding: 20 }}>
       <Title order={2} mb="md">
         Food Tracker
       </Title>
+      {/* <AddFoodModal opened={opened} onClose={close} onAdd={(name,price,quantity,category) => addItem(name,price,quantity,category)}/> */}
       <Button>Add Food Item</Button>
       {/* Type additional AddFoodModal here. */}
 
