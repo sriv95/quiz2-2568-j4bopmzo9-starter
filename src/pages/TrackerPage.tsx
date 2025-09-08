@@ -1,6 +1,7 @@
 import { useState , useEffect } from "react";
 import { Button, Stack, Title, Divider, Container , Text} from "@mantine/core";
 import { v4 as uuidv4 } from "uuid";
+import ItemCard from "../components/ItemCard"
 
 type FoodItem = {
   id: string;
@@ -49,6 +50,9 @@ export default function FoodTracker() {
     setSumDessert(sumDessert)
   },[items])
 
+  const deleteItem = (Id: string) =>{
+    setItems((item) => item.filter((i)=>i.id !== Id))
+  }
   return (
     <Container style={{ maxWidth: 600, margin: "auto", padding: 20 }}>
       <Title order={2} mb="md">
@@ -69,7 +73,9 @@ export default function FoodTracker() {
       <Divider my="md" />
       {/* Type additional card here. */}
 
-      <Stack>{/* Type additional food card list here. */}</Stack>
+      <Stack>{items.map((i) => (
+        <ItemCard id={i.id} name={i.name} price={i.price} quantity={i.quantity} category={i.category} onDelete={deleteItem}/>
+      ))}</Stack>
     </Container>
   );
 }
